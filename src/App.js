@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      My Form App
+      {/* <h2>Enter Data</h2> */}
       <MyForm/>
     </div>
   );

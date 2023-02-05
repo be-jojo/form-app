@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import FormInput from './FormInput'
 
+import './myForm.css'
+
 function MyForm() {
     const [data, setData] = useState(
         {name: '', email: '', phoneNumber: '', message: ''}
@@ -15,14 +17,14 @@ function MyForm() {
         setData({name: '', email: '', phoneNumber: '', message: ''})
     }
 
-    const inputs = [
+     const inputs = [
         {
             id: 1,
             name:'name',
             type: 'text',
             placeholder: 'Name',
-            label: 'name',
-            pattern: '[a-zA-Z]{1, 16}',
+            label: 'Name',
+            pattern: '[a-zA-Z]{1,16}',
             required: true,
             error:'Only Alphabates allowed'
         },
@@ -31,8 +33,8 @@ function MyForm() {
             name:'email',
             type: 'email',
             placeholder: 'Email',
-            label: 'email',
-            // pattern: '',
+            label: 'Email',
+            pattern: '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$',
             required: true,
             error:'only Correct Email Id allowed'
         },
@@ -40,19 +42,18 @@ function MyForm() {
             id: 3,
             name:'phoneNumber',
             type: 'text',
-            placeholder: 'Phone NUmber',
-            label: 'phoneNumber',
+            placeholder: 'Phone Number',
+            label: 'Phone Number',
             pattern: '[0-9]{10}$',
             required: true,
-            error:'Only 10 digit correct Phone Numbers allowed'
+            error:'Only 10 digit valid Phone Numbers allowed'
         },
         {
             id: 4,
             name:'message',
             type: 'text',
             placeholder: 'Message',
-            label: 'message',
-            required: false,
+            label: 'Message',
         }
     ]
 
@@ -61,8 +62,8 @@ function MyForm() {
     }
 
     return (
-        <section>
-            <form method='post' onSubmit={handleSubmit}>
+        <div className='container'>
+            <form className='form' method='post' onSubmit={handleSubmit}>
                 {inputs.map((input)=>
                     <FormInput
                         key={input.id}
@@ -73,16 +74,15 @@ function MyForm() {
                 )}
                 <button type='submit'>Submit Form</button>
             </form>
-            <div>
-                {showData && 
-                <div>
-                    <div>Name: {info.name}</div>
-                    <div>Email: {info.uemail}</div>
-                    <div>Phone No: {info.upn}</div>
-                    <div> Message: {info.um}</div>
-                </div>}
-            </div>
-        </section>
+            {showData && 
+            <div className='data-container'> 
+                Submitted Data
+                <div className='data-item'>Name: {info.name}</div>
+                <div className='data-item'>Email: {info.uemail}</div>
+                <div className='data-item'>Phone No: {info.upn}</div>
+                <div className='data-item'> Message: {info.um}</div>
+            </div>}
+        </div>
 
     );
 }
